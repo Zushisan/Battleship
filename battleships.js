@@ -6,8 +6,20 @@ const seaTiles = [
   ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", ]
 ];
 
-function createGrid(){
+var battleships = [
 
+{ name: "Carrier",
+  length: 5,
+  pos: ["","","","",""]},
+{},
+{},
+{},
+{}
+
+];
+
+
+function createGrid(){
   // Create Display ROWS
   for(let i = 0; i < seaTiles[0].length; i++){
     $('.board').append('<div class="row" id="row'+seaTiles[1][i]+'"></div>');
@@ -17,30 +29,30 @@ function createGrid(){
     $('.row').append('<div class="tile" id="column'+seaTiles[0][j]+'"></div>');
   }
 }
-
-function clickedRow(row){
-
-}
-
-function clickedColumn(column){
-
-}
-
-
-
-  $('.row').on('click', function() {
-    var thisRow = this.id;
-    console.log(thisRow);
-    $('.row').children('.tile').on('click', function() {
-      console.log(this.id);
-
-    });
-  });
-
-
-
-// We initialize the grid
+// We initialize the grid, will refactor for two players
 createGrid();
+
+function tileClicked(rowID, columnID, battleshipsPos){
+
+  rowID = rowID.substr(rowID.length - 1);
+
+  if(columnID.length === 8){
+    columnID = columnID.substr(columnID.length - 2);
+  }
+  else {
+    columnID = columnID.substr(columnID.length - 1);
+  }
+  console.log(rowID+columnID);
+}
+
+$('.row').click(function () {
+
+  }).children().click(function () {
+      let columnID = this.id;
+      let rowObject = $(this).parent('.row');
+      let rowID = rowObject.attr('id');
+      tileClicked(rowID, columnID);
+      });
 
 });
 
@@ -48,6 +60,4 @@ createGrid();
 
 
 
-  // $('.photos').on('mouseenter', 'li', function() {
-  //   $(this).find('span').slideToggle();
-  // });
+
