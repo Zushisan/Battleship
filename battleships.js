@@ -18,33 +18,23 @@ $(document).ready(function() {
 
   // ];
 
-
   function createGrid(){
     // Create Display ROWS
     for(let i = 0; i < seaTiles[0].length; i++){
-      $('.board').append('<div class="row" id="row'+seaTiles[1][i]+'"></div>');
+      $('.board').append('<div class="row" id="'+seaTiles[1][i]+'"></div>');
     }
     // Create Display TILES in ROWS
     for(let j = 0; j < seaTiles[1].length; j++){
-      $('.row').append('<div class="tile" id="column'+seaTiles[0][j]+'"></div>');
+      $('.row').append('<div class="tile" id="'+seaTiles[0][j]+'"></div>');
     }
   }
   // We initialize the grid, will refactor for two players and IA
   createGrid();
 
+
   function tileClicked(rowID, columnID){
-
-    columnID = columnID.substr(columnID.length - 1);
-
-    if(rowID.length === 5){
-      rowID = rowID.substr(rowID.length - 2);
-    }
-    else {
-      rowID = rowID.substr(rowID.length - 1);
-    }
     return columnID+rowID;
   }
-
 
   $('.row').click(function () {
     }).children().click(function () {
@@ -61,12 +51,61 @@ $(document).ready(function() {
       $('.row').on('mouseover', function () {
     }).children().on('mouseover', function () {
         $(this).addClass('hover');
+        $(this).next().addClass('hover');
 
 
         }).mouseout(function(){
-      $(this).removeClass('hover')});;
+      $(this).removeClass('hover');
+      $(this).next().removeClass('hover');
+
+    });;
   });
 
+    $('#carrier').click(function(){
+    console.log("i click button");
+
+      $('.row').on('mouseover', function () {
+    }).children().on('mouseover', function () {
+        $(this).addClass('hover');
+        $(this).next().addClass('hover');
+        $(this).next().next().addClass('hover');
+        $(this).prev().addClass('hover');
+        $(this).prev().prev().addClass('hover');
+
+
+        }).mouseout(function(){
+      $(this).removeClass('hover');
+      $(this).next().removeClass('hover');
+      $(this).next().next().removeClass('hover');
+      $(this).prev().removeClass('hover');
+      $(this).prev().prev().removeClass('hover');
+
+    });;
+  });
+
+        $('#carrierVertical').click(function(){
+    console.log("i click button");
+
+      $('.row').on('mouseover', function () {
+        let idtest = $(this).children('.tile').attr('id');
+        $(this).children('#'+idtest).addClass('hover');
+    }).children().on('mouseover', function () {
+        // $(this).addClass('hover');
+        // $(this).next().addClass('hover');
+        // $(this).next().next().addClass('hover');
+        // $(this).prev().addClass('hover');
+        // $(this).prev().prev().addClass('hover');
+
+
+        }).mouseout(function(){
+      // $(this).removeClass('hover');
+      // $(this).next().removeClass('hover');
+      // $(this).next().next().removeClass('hover');
+      // $(this).prev().removeClass('hover');
+      // $(this).prev().prev().removeClass('hover');
+
+    });;
+  });
 
 
 
