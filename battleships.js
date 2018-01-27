@@ -22,20 +22,17 @@ var battleships = [
 function createGrid(){
   // Create Display ROWS
   for(let i = 0; i < seaTiles[0].length; i++){
-    $('.board').append('<div class="row" id="row'+seaTiles[1][i]+'"></div>');
+    $('.board').append('<div class="row" id="row'+seaTiles[1][i]+'ondrop="drop(event)" ondragover="allowDrop(event)"></div>');
   }
   // Create Display TILES in ROWS
   for(let j = 0; j < seaTiles[1].length; j++){
-    $('.row').append('<div class="tile" id="column'+seaTiles[0][j]+'"></div>');
+    $('.row').append('<div class="tile" id="column'+seaTiles[0][j]+'ondrop="drop(event)" ondragover="allowDrop(event)"></div>');
   }
 }
 // We initialize the grid, will refactor for two players and IA
 createGrid();
 
-
-
 function tileClicked(rowID, columnID, battleshipsPos){
-
 
   columnID = columnID.substr(columnID.length - 1);
 
@@ -48,6 +45,7 @@ function tileClicked(rowID, columnID, battleshipsPos){
   console.log(columnID+rowID);
 }
 
+
 $('.row').click(function () {
 
   }).children().click(function () {
@@ -59,7 +57,19 @@ $('.row').click(function () {
 
 });
 
+function allowDrop(ev) {
+    ev.preventDefault();
+}
 
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
 
 
 

@@ -1,21 +1,21 @@
 .board {
 
-    width: 750px;
-    height: 750px;
+    width: 500px;
+    height: 500px;
 }
 
 .row {
 
-    width: 750px;
-    height: 75px;
+    width: 500px;
+    height: 50px;
     margin-bottom: -3px;
     float: left;
 }
 
 .tile {
     background-color: lightblue;
-    width: 70px;
-    height: 70px;
+    width: 49px;
+    height: 50px;
     border: 1px solid black;
     margin-right: -1px;
     float: left;
