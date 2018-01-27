@@ -21,6 +21,20 @@
     float: left;
 }
 
+/*.rowDisplay {
+
+    width: 500px;
+    height: 50px;
+    float: left;
+}
+
+.columnDisplay {
+
+    width: 49px;
+    height: 500px;
+    float: left;
+}*/
+
 .hover {
   background-color: blue;
 }
