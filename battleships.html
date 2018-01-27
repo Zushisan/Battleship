@@ -8,16 +8,15 @@
   </head>
   <body>
 
-    <div class="playerOne" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-      <div class="board" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="playerOne"></div>
+      <div class="board""></div>
 
 
-      <!-- <div class="destroyer"><span>I am the destroyer 2 tiles</span></div> -->
+      <div class="destroyerClass">
+        <button type="button" id="destroyer">I am the destroyer 2 tiles</button>
+      </div>
 
-      <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-  <div class="destroyer" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">I am the destroyer</div></div>
 
-<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"> drop me here</div>
 
   <script src="jquery.js"></script>
   <script src="battleships.js"></script>
