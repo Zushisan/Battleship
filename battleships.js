@@ -72,26 +72,30 @@ $(document).ready(function() {
 
 
   $('#destroyer').click(function(){
-    console.log("i click button");
 
     $('.row').on('mouseover', function () {
     }).children().on('mouseover', function () {
-      $(this).addClass('hover');
-      $(this).next().addClass('hover');
+      // Principal origin from where we hover and from where we set ship down
+      $(this).addClass('hover').click(function(){
+        $(this).addClass('shipSet').removeClass('hover');
+        // Next tiles we need to set down
+        $(this).next().addClass('shipSet').removeClass('hover');
+      });
 
+      // Next tiles we need to hover
+      $(this).next().addClass('hover');
 
     }).mouseout(function(){
       $(this).removeClass('hover');
       $(this).next().removeClass('hover');
-
     });;
   });
 
     $('#carrier').click(function(){
-      console.log("i click button");
 
       $('.row').on('mouseover', function () {
       }).children().on('mouseover', function () {
+        // Principal origin from where we hover and from where we set ship down
         $(this).addClass('hover');
         $(this).next().addClass('hover');
         $(this).next().next().addClass('hover');
@@ -112,6 +116,7 @@ $(document).ready(function() {
     $('#carrierVertical').click(function(){
 
       $('.tile').on('mouseover', function () {
+        // Principal origin from where we hover and from where we set ship down
         $(this).addClass('hover');
         $(setVerticalId(this, 1)).addClass('hover');
         $(setVerticalId(this, 2)).addClass('hover');
