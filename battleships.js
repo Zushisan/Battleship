@@ -70,38 +70,45 @@ $(document).ready(function() {
   }
 
 
+  // let destroyerPlaced = 0;
+  // $('#destroyer').on('click', function(){
 
-  $('#destroyer').click(function(){
+  //   $('.row').on('mouseover', function () {
+  //   }).children().on('mouseover', function () {
+  //     // Principal origin from where we hover and from where we set ship down
+  //     if (destroyerPlaced === 0){
+  //       $(this).addClass('hover').on('click', function(){
 
-    $('.row').on('mouseover', function () {
-    }).children().on('mouseover', function () {
-      // Principal origin from where we hover and from where we set ship down
-      $(this).addClass('hover').click(function(){
-        $(this).addClass('shipSet').removeClass('hover');
-        // Next tiles we need to set down
-        $(this).next().addClass('shipSet').removeClass('hover');
-      });
 
-      // Next tiles we need to hover
-      $(this).next().addClass('hover');
+  //         console.log('I CLICK');
+  //         $(this).addClass('shipSet').removeClass('hover');
+  //         // Next tiles we need to set down
+  //         $(this).next().addClass('shipSet').removeClass('hover');
+  //         console.log(destroyerPlaced);
+  //         destroyerPlaced++;
 
-    }).mouseout(function(){
-      $(this).removeClass('hover');
-      $(this).next().removeClass('hover');
-    });;
-  });
+  //       });
+
+  //       // Next tiles we need to hover
+  //       $(this).next().addClass('hover');
+  //     }
+  //   }).mouseout(function(){
+
+  //       $(this).removeClass('hover');
+  //       $(this).next().removeClass('hover');
+
+  //   });
+  // });
 
     $('#carrier').click(function(){
 
-      $('.row').on('mouseover', function () {
-      }).children().on('mouseover', function () {
+      $('.tile').on('mouseover', function (){
         // Principal origin from where we hover and from where we set ship down
         $(this).addClass('hover');
         $(this).next().addClass('hover');
         $(this).next().next().addClass('hover');
         $(this).prev().addClass('hover');
         $(this).prev().prev().addClass('hover');
-
 
       }).mouseout(function(){
         $(this).removeClass('hover');
@@ -110,29 +117,45 @@ $(document).ready(function() {
         $(this).prev().removeClass('hover');
         $(this).prev().prev().removeClass('hover');
 
-      });;
+      }).on('click', function(){
+        $(this).addClass('shipSet');
+        $(this).next().addClass('shipSet');
+        $(this).next().next().addClass('shipSet');
+        $(this).prev().addClass('shipSet');
+        $(this).prev().prev().addClass('shipSet');
+      });
+
     });
 
-    $('#carrierVertical').click(function(){
+    $('#carrierVertical').on('click', function(){
 
-      $('.tile').on('mouseover', function () {
-        // Principal origin from where we hover and from where we set ship down
-        $(this).addClass('hover');
-        $(setVerticalId(this, 1)).addClass('hover');
-        $(setVerticalId(this, 2)).addClass('hover');
-        $(setVerticalId(this, 3)).addClass('hover');
-        $(setVerticalId(this, 4)).addClass('hover');
+        $('.tile').mouseover(function (){
+          $(this).addClass('hover');
+          $(setVerticalId(this, 1)).addClass('hover');
+          $(setVerticalId(this, 2)).addClass('hover');
+          $(setVerticalId(this, -1)).addClass('hover');
+          $(setVerticalId(this, -2)).addClass('hover');
 
-      }).mouseout(function(){
-        $(this).removeClass('hover');
-        $(setVerticalId(this, 1)).removeClass('hover');
-        $(setVerticalId(this, 2)).removeClass('hover');
-        $(setVerticalId(this, 3)).removeClass('hover');
-        $(setVerticalId(this, 4)).removeClass('hover');
+        }).mouseout(function(){
+          $(this).removeClass('hover');
+          $(setVerticalId(this, 1)).removeClass('hover');
+          $(setVerticalId(this, 2)).removeClass('hover');
+          $(setVerticalId(this, -1)).removeClass('hover');
+          $(setVerticalId(this, -2)).removeClass('hover');
 
-      });;
+        }).click(function(){
+          $(this).addClass('shipSet');
+          $(setVerticalId(this, 1)).addClass('shipSet');
+          $(setVerticalId(this, 2)).addClass('shipSet');
+          $(setVerticalId(this, -1)).addClass('shipSet');
+          $(setVerticalId(this, -2)).addClass('shipSet');
+
+
+        }).off('mouseover', 'mouseout', 'click');
+
     });
-});
+
+}); // document ready
 
 
 
