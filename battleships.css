@@ -1,3 +1,11 @@
+.playerOne {
+ /* Player one is the container for player one*/
+
+ background-color: lightgrey;
+ width: 750px;
+}
+
+
 .board {
 
     width: 500px;
@@ -41,4 +49,11 @@
 
 .shipSet {
   background-color: #525151;
+}
+
+.messageBox {
+  float: right;
+  width: 230px;
+  height: 300px;
+  background-color: grey;
 }

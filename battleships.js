@@ -6,16 +6,18 @@ $(document).ready(function() {
     ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", ]
   ];
 
-  // var battleships = [
-
-  // { name: "Carrier",
-  //   length: 5,
-  //   pos: ["","","","",""]},
-  // {},
-  // {},
-  // {},
-  // {}
-  // ];
+  var battleships = [
+    { name: "Carrier",
+      setDown: false },
+    { name: "Battleship",
+      setDown: false },
+    { name: "Cruiser",
+      setDown: false },
+    { name: "Submarine",
+      setDown: false },
+    { name: "Destroyer",
+      setDown: false }
+  ];
 
   function createGrid(){
     // Create Display ROWS
@@ -55,8 +57,33 @@ $(document).ready(function() {
     }
   }
 
-  // We initialize the grid, will refactor for two players and IA
+  // We initialize the grid before anything, will refactor for two players and IA
   createGrid();
+
+  // That function is used to display any message to the player from the message box
+  // shipPlacement is an optional argument that we use to setup ships.
+  function displayMessage (message, shipPlacement) {
+    $('.messageBox').empty();
+    $('.messageBox').append('<p>' + message + '</p>');
+
+    if(shipPlacement){
+      if(!battleships[0].setDown){
+        $('.messageBox').append('<p> <button type="button" id="carrier">Carrier</button> </p>');
+      }
+      if(!battleships[1].setDown){
+        $('.messageBox').append('<p> <button type="button" id="battleship">Battleship</button> </p>');
+      }
+      if(!battleships[2].setDown){
+        $('.messageBox').append('<p> <button type="button" id="cruiser">Cruiser</button> </p>');
+      }
+      if(!battleships[3].setDown){
+        $('.messageBox').append('<p> <button type="button" id="submarine">Submarine</button> </p>');
+      }
+      if(!battleships[4].setDown){
+        $('.messageBox').append('<p> <button type="button" id="destroyer">Destroyer</button> </p>');
+      }
+    }
+  }
 
   // That function will return the vertical ID from this and 'number' tile away
   // Use it to set ship vertically
@@ -69,41 +96,13 @@ $(document).ready(function() {
     return '#' + verticalId;
   }
 
-
-  // let destroyerPlaced = 0;
-  // $('#destroyer').on('click', function(){
-
-  //   $('.row').on('mouseover', function () {
-  //   }).children().on('mouseover', function () {
-  //     // Principal origin from where we hover and from where we set ship down
-  //     if (destroyerPlaced === 0){
-  //       $(this).addClass('hover').on('click', function(){
-
-
-  //         console.log('I CLICK');
-  //         $(this).addClass('shipSet').removeClass('hover');
-  //         // Next tiles we need to set down
-  //         $(this).next().addClass('shipSet').removeClass('hover');
-  //         console.log(destroyerPlaced);
-  //         destroyerPlaced++;
-
-  //       });
-
-  //       // Next tiles we need to hover
-  //       $(this).next().addClass('hover');
-  //     }
-  //   }).mouseout(function(){
-
-  //       $(this).removeClass('hover');
-  //       $(this).next().removeClass('hover');
-
-  //   });
-  // });
-
-    $('#carrier').click(function(){
-
+  // Function created to place carrier, will be refactored with other ships function to contain all ships
+  // orientation takes vertical or horizontal.
+  function setCarrier(orientation){
+    console.log("I am in setCarrier")
+    if(orientation === "horizontal"){
       $('.tile').on('mouseover', function (){
-        // Principal origin from where we hover and from where we set ship down
+      // Principal origin from where we hover and from where we set ship down
         $(this).addClass('hover');
         $(this).next().addClass('hover');
         $(this).next().next().addClass('hover');
@@ -123,43 +122,185 @@ $(document).ready(function() {
         $(this).next().next().addClass('shipSet');
         $(this).prev().addClass('shipSet');
         $(this).prev().prev().addClass('shipSet');
+        battleships[0].setDown = true;
+        displayMessage("Please place your Ships: ", true);
+        listening();
+        $('.tile').off();
+
+      });
+    }
+    else if(orientation === "vertical"){
+      $('.tile').mouseover(function (){
+        $(this).addClass('hover');
+        $(setVerticalId(this, 1)).addClass('hover');
+        $(setVerticalId(this, 2)).addClass('hover');
+        $(setVerticalId(this, -1)).addClass('hover');
+        $(setVerticalId(this, -2)).addClass('hover');
+
+      }).mouseout(function(){
+        $(this).removeClass('hover');
+        $(setVerticalId(this, 1)).removeClass('hover');
+        $(setVerticalId(this, 2)).removeClass('hover');
+        $(setVerticalId(this, -1)).removeClass('hover');
+        $(setVerticalId(this, -2)).removeClass('hover');
+
+      }).click(function(){
+        $(this).addClass('shipSet');
+        $(setVerticalId(this, 1)).addClass('shipSet');
+        $(setVerticalId(this, 2)).addClass('shipSet');
+        $(setVerticalId(this, -1)).addClass('shipSet');
+        $(setVerticalId(this, -2)).addClass('shipSet');
+        battleships[0].setDown = true;
+        displayMessage("Please place your Ships: ", true);
+        listening();
+        $('.tile').off();
+
+      });
+    }
+  }
+
+  function setBattleship(orientation){
+
+    if(orientation === "horizontal"){
+      $('.tile').on('mouseover', function (){
+      // Principal origin from where we hover and from where we set ship down
+        $(this).addClass('hover');
+        $(this).next().addClass('hover');
+        $(this).next().next().addClass('hover');
+        $(this).prev().addClass('hover');
+
+      }).mouseout(function(){
+        $(this).removeClass('hover');
+        $(this).next().removeClass('hover');
+        $(this).next().next().removeClass('hover');
+        $(this).prev().removeClass('hover');
+
+      }).on('click', function(){
+        $(this).addClass('shipSet');
+        $(this).next().addClass('shipSet');
+        $(this).next().next().addClass('shipSet');
+        $(this).prev().addClass('shipSet');
+        battleships[1].setDown = true;
+        displayMessage("Please place your Ships: ", true);
+        listening();
+        $('.tile').off();
+
+      });
+    }
+    else if(orientation === "vertical"){
+      $('.tile').mouseover(function (){
+        $(this).addClass('hover');
+        $(setVerticalId(this, 1)).addClass('hover');
+        $(setVerticalId(this, 2)).addClass('hover');
+        $(setVerticalId(this, -1)).addClass('hover');
+
+      }).mouseout(function(){
+        $(this).removeClass('hover');
+        $(setVerticalId(this, 1)).removeClass('hover');
+        $(setVerticalId(this, 2)).removeClass('hover');
+        $(setVerticalId(this, -1)).removeClass('hover');
+
+      }).click(function(){
+        $(this).addClass('shipSet');
+        $(setVerticalId(this, 1)).addClass('shipSet');
+        $(setVerticalId(this, 2)).addClass('shipSet');
+        $(setVerticalId(this, -1)).addClass('shipSet');
+        battleships[1].setDown = true;
+        displayMessage("Please place your Ships: ", true);
+        listening();
+        $('.tile').off();
+
+      });
+    }
+  }
+
+  // Need this function to create a dynamic ship set down, called everytime we need to listen to a new button click
+  function listening(){
+
+    $('#carrier').click(function(){
+      $('.messageBox').empty();
+      $('.messageBox').append('<p> Choose orientation </p>');
+      $('.messageBox').append('<p> <button type="button" id="carrier" class="horizontal">Horizontal</button> </p>');
+      $('.messageBox').append('<p> <button type="button" id="carrier" class="vertical">Vertical</button> </p>');
+
+      $('#carrier.horizontal').click(function(){
+        setCarrier('horizontal');
       });
 
+      $('#carrier.vertical').click(function(){
+        setCarrier('vertical');
+      });
     });
 
-    $('#carrierVertical').on('click', function(){
+    $('#battleship').click(function(){
+      $('.messageBox').empty();
+      $('.messageBox').append('<p> Choose orientation </p>');
+      $('.messageBox').append('<p> <button type="button" id="battleship" class="horizontal">Horizontal</button> </p>');
+      $('.messageBox').append('<p> <button type="button" id="battleship" class="vertical">Vertical</button> </p>');
 
-        $('.tile').mouseover(function (){
-          $(this).addClass('hover');
-          $(setVerticalId(this, 1)).addClass('hover');
-          $(setVerticalId(this, 2)).addClass('hover');
-          $(setVerticalId(this, -1)).addClass('hover');
-          $(setVerticalId(this, -2)).addClass('hover');
+      $('#battleship.horizontal').click(function(){
+        setBattleship('horizontal');
+      });
 
-        }).mouseout(function(){
-          $(this).removeClass('hover');
-          $(setVerticalId(this, 1)).removeClass('hover');
-          $(setVerticalId(this, 2)).removeClass('hover');
-          $(setVerticalId(this, -1)).removeClass('hover');
-          $(setVerticalId(this, -2)).removeClass('hover');
-
-        }).click(function(){
-          $(this).addClass('shipSet');
-          $(setVerticalId(this, 1)).addClass('shipSet');
-          $(setVerticalId(this, 2)).addClass('shipSet');
-          $(setVerticalId(this, -1)).addClass('shipSet');
-          $(setVerticalId(this, -2)).addClass('shipSet');
-
-
-        }).off('mouseover', 'mouseout', 'click');
-
+      $('#battleship.vertical').click(function(){
+        setBattleship('vertical');
+      });
     });
+
+  }
+
+  // When clicked, the startGame button will walk the player into placing each of his ships.
+  $('#startGame').click(function(){
+    displayMessage("Please place your Ships: ", true);
+    listening();
+  });
+
+
 
 }); // document ready
 
 
 
+// happy path for one player setup + play against himself:
 
+  // create the board
+  // have a message box on the right
+  // first ask the player to place his ships
+  // in order from longest to shortest
+  // Carrier then Vertical or Horizontal
+  // followed by other ships
+
+  // Click on Start playing
+    // Please place ship message with Carrier
+    // Place Carrier
+      // Click on Hori or Verti
+        // Start the highlight for specified mode
+          // Click place the ship down
+            // end the highlight
+              // start next event for next ship
+
+    //   Place Battleship
+    //     Place Cruiser
+    //       Place Submarine
+    //         Place Destroyer
+
+// Start game set 5 fives button, one for each ship
+// clicking one promtp the vertical or horizontal
+// setting it up gets back to the button selection with the ship button less
+
+
+
+
+
+
+
+
+
+  // then display a message to start playing
+  // each click on a ship works
+  // each click not on a ship misses
+
+  // first start by just displaying messages in message box to see if I get the right info to work with.
 
 
 
