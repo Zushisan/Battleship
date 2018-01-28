@@ -214,6 +214,148 @@ $(document).ready(function() {
     }
   }
 
+  function setCruiser(orientation){
+
+    if(orientation === "horizontal"){
+      $('.tile').on('mouseover', function (){
+      // Principal origin from where we hover and from where we set ship down
+        $(this).addClass('hover');
+        $(this).next().addClass('hover');
+        $(this).next().next().addClass('hover');
+
+      }).mouseout(function(){
+        $(this).removeClass('hover');
+        $(this).next().removeClass('hover');
+        $(this).next().next().removeClass('hover');
+
+      }).on('click', function(){
+        $(this).addClass('shipSet');
+        $(this).next().addClass('shipSet');
+        $(this).next().next().addClass('shipSet');
+        battleships[2].setDown = true;
+        displayMessage("Please place your Ships: ", true);
+        listening();
+        $('.tile').off();
+
+      });
+    }
+    else if(orientation === "vertical"){
+      $('.tile').mouseover(function (){
+        $(this).addClass('hover');
+        $(setVerticalId(this, 1)).addClass('hover');
+        $(setVerticalId(this, 2)).addClass('hover');
+
+      }).mouseout(function(){
+        $(this).removeClass('hover');
+        $(setVerticalId(this, 1)).removeClass('hover');
+        $(setVerticalId(this, 2)).removeClass('hover');
+
+      }).click(function(){
+        $(this).addClass('shipSet');
+        $(setVerticalId(this, 1)).addClass('shipSet');
+        $(setVerticalId(this, 2)).addClass('shipSet');
+        battleships[2].setDown = true;
+        displayMessage("Please place your Ships: ", true);
+        listening();
+        $('.tile').off();
+
+      });
+    }
+  }
+
+  function setSubmarine(orientation){
+
+    if(orientation === "horizontal"){
+      $('.tile').on('mouseover', function (){
+      // Principal origin from where we hover and from where we set ship down
+        $(this).addClass('hover');
+        $(this).next().addClass('hover');
+        $(this).next().next().addClass('hover');
+
+      }).mouseout(function(){
+        $(this).removeClass('hover');
+        $(this).next().removeClass('hover');
+        $(this).next().next().removeClass('hover');
+
+      }).on('click', function(){
+        $(this).addClass('shipSet');
+        $(this).next().addClass('shipSet');
+        $(this).next().next().addClass('shipSet');
+        battleships[3].setDown = true;
+        displayMessage("Please place your Ships: ", true);
+        listening();
+        $('.tile').off();
+
+      });
+    }
+    else if(orientation === "vertical"){
+      $('.tile').mouseover(function (){
+        $(this).addClass('hover');
+        $(setVerticalId(this, 1)).addClass('hover');
+        $(setVerticalId(this, 2)).addClass('hover');
+
+      }).mouseout(function(){
+        $(this).removeClass('hover');
+        $(setVerticalId(this, 1)).removeClass('hover');
+        $(setVerticalId(this, 2)).removeClass('hover');
+
+      }).click(function(){
+        $(this).addClass('shipSet');
+        $(setVerticalId(this, 1)).addClass('shipSet');
+        $(setVerticalId(this, 2)).addClass('shipSet');
+        battleships[3].setDown = true;
+        displayMessage("Please place your Ships: ", true);
+        listening();
+        $('.tile').off();
+
+      });
+    }
+  }
+
+  function setDestroyer(orientation){
+
+    if(orientation === "horizontal"){
+      $('.tile').on('mouseover', function (){
+      // Principal origin from where we hover and from where we set ship down
+        $(this).addClass('hover');
+        $(this).next().addClass('hover');
+
+      }).mouseout(function(){
+        $(this).removeClass('hover');
+        $(this).next().removeClass('hover');
+
+      }).on('click', function(){
+        $(this).addClass('shipSet');
+        $(this).next().addClass('shipSet');
+        battleships[4].setDown = true;
+        displayMessage("Please place your Ships: ", true);
+        listening();
+        $('.tile').off();
+
+      });
+    }
+    else if(orientation === "vertical"){
+      $('.tile').mouseover(function (){
+        $(this).addClass('hover');
+        $(setVerticalId(this, 1)).addClass('hover');
+
+      }).mouseout(function(){
+        $(this).removeClass('hover');
+        $(setVerticalId(this, 1)).removeClass('hover');
+
+      }).click(function(){
+        $(this).addClass('shipSet');
+        $(setVerticalId(this, 1)).addClass('shipSet');
+        battleships[4].setDown = true;
+        displayMessage("Please place your Ships: ", true);
+        listening();
+        $('.tile').off();
+
+      });
+    }
+  }
+
+
   // Need this function to create a dynamic ship set down, called everytime we need to listen to a new button click
   function listening(){
 
@@ -244,6 +386,51 @@ $(document).ready(function() {
 
       $('#battleship.vertical').click(function(){
         setBattleship('vertical');
+      });
+    });
+
+    $('#cruiser').click(function(){
+      $('.messageBox').empty();
+      $('.messageBox').append('<p> Choose orientation </p>');
+      $('.messageBox').append('<p> <button type="button" id="cruiser" class="horizontal">Horizontal</button> </p>');
+      $('.messageBox').append('<p> <button type="button" id="cruiser" class="vertical">Vertical</button> </p>');
+
+      $('#cruiser.horizontal').click(function(){
+        setCruiser('horizontal');
+      });
+
+      $('#cruiser.vertical').click(function(){
+        setCruiser('vertical');
+      });
+    });
+
+    $('#submarine').click(function(){
+      $('.messageBox').empty();
+      $('.messageBox').append('<p> Choose orientation </p>');
+      $('.messageBox').append('<p> <button type="button" id="submarine" class="horizontal">Horizontal</button> </p>');
+      $('.messageBox').append('<p> <button type="button" id="submarine" class="vertical">Vertical</button> </p>');
+
+      $('#submarine.horizontal').click(function(){
+        setSubmarine('horizontal');
+      });
+
+      $('#submarine.vertical').click(function(){
+        setSubmarine('vertical');
+      });
+    });
+
+    $('#destroyer').click(function(){
+      $('.messageBox').empty();
+      $('.messageBox').append('<p> Choose orientation </p>');
+      $('.messageBox').append('<p> <button type="button" id="destroyer" class="horizontal">Horizontal</button> </p>');
+      $('.messageBox').append('<p> <button type="button" id="destroyer" class="vertical">Vertical</button> </p>');
+
+      $('#destroyer.horizontal').click(function(){
+        setDestroyer('horizontal');
+      });
+
+      $('#destroyer.vertical').click(function(){
+        setDestroyer('vertical');
       });
     });
 
