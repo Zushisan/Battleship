@@ -29,6 +29,9 @@
     float: left;
 }
 
+.touched {
+  background-color: red;
+}
 /*.rowDisplay {
 
     width: 500px;

@@ -8,15 +8,25 @@ $(document).ready(function() {
 
   var battleships = [
     { name: "Carrier",
-      setDown: false },
+      setDown: false,
+      coordinates: [],
+      alive: true },
     { name: "Battleship",
-      setDown: false },
+      setDown: false,
+      coordinates: [],
+      alive: true },
     { name: "Cruiser",
-      setDown: false },
+      setDown: false,
+      coordinates: [],
+      alive: true },
     { name: "Submarine",
-      setDown: false },
+      setDown: false,
+      coordinates: [],
+      alive: true },
     { name: "Destroyer",
-      setDown: false }
+      setDown: false,
+      coordinates: [],
+      alive: true }
   ];
 
   function createGrid(){
@@ -122,10 +132,13 @@ $(document).ready(function() {
         $(this).next().next().addClass('shipSet');
         $(this).prev().addClass('shipSet');
         $(this).prev().prev().addClass('shipSet');
+
         battleships[0].setDown = true;
+        battleships[0].coordinates.push(this.id, $(this).next().attr('id'), $(this).next().next().attr('id'), $(this).prev().attr('id'), $(this).prev().prev().attr('id'));
+
         displayMessage("Please place your Ships: ", true);
-        listening();
         $('.tile').off();
+        listening();
 
       });
     }
@@ -150,10 +163,14 @@ $(document).ready(function() {
         $(setVerticalId(this, 2)).addClass('shipSet');
         $(setVerticalId(this, -1)).addClass('shipSet');
         $(setVerticalId(this, -2)).addClass('shipSet');
+
         battleships[0].setDown = true;
+        battleships[0].coordinates.push(this.id, $(setVerticalId(this, 1)).attr('id'), $(setVerticalId(this, 2)).attr('id'), $(setVerticalId(this, -1)).attr('id'), $(setVerticalId(this, -2)).attr('id'));
+
+
         displayMessage("Please place your Ships: ", true);
-        listening();
         $('.tile').off();
+        listening();
 
       });
     }
@@ -180,10 +197,13 @@ $(document).ready(function() {
         $(this).next().addClass('shipSet');
         $(this).next().next().addClass('shipSet');
         $(this).prev().addClass('shipSet');
+
         battleships[1].setDown = true;
+        battleships[1].coordinates.push(this.id, $(this).next().attr('id'), $(this).next().next().attr('id'), $(this).prev().attr('id'));
+
         displayMessage("Please place your Ships: ", true);
-        listening();
         $('.tile').off();
+        listening();
 
       });
     }
@@ -205,10 +225,13 @@ $(document).ready(function() {
         $(setVerticalId(this, 1)).addClass('shipSet');
         $(setVerticalId(this, 2)).addClass('shipSet');
         $(setVerticalId(this, -1)).addClass('shipSet');
+
         battleships[1].setDown = true;
+        battleships[1].coordinates.push(this.id, $(setVerticalId(this, 1)).attr('id'), $(setVerticalId(this, 2)).attr('id'), $(setVerticalId(this, -1)).attr('id'));
+
         displayMessage("Please place your Ships: ", true);
-        listening();
         $('.tile').off();
+        listening();
 
       });
     }
@@ -232,10 +255,13 @@ $(document).ready(function() {
         $(this).addClass('shipSet');
         $(this).next().addClass('shipSet');
         $(this).next().next().addClass('shipSet');
+
         battleships[2].setDown = true;
+        battleships[2].coordinates.push(this.id, $(this).next().attr('id'), $(this).next().next().attr('id'));
+
         displayMessage("Please place your Ships: ", true);
-        listening();
         $('.tile').off();
+        listening();
 
       });
     }
@@ -254,10 +280,13 @@ $(document).ready(function() {
         $(this).addClass('shipSet');
         $(setVerticalId(this, 1)).addClass('shipSet');
         $(setVerticalId(this, 2)).addClass('shipSet');
+
         battleships[2].setDown = true;
+        battleships[2].coordinates.push(this.id, $(setVerticalId(this, 1)).attr('id'), $(setVerticalId(this, 2)).attr('id'));
+
         displayMessage("Please place your Ships: ", true);
-        listening();
         $('.tile').off();
+        listening();
 
       });
     }
@@ -281,10 +310,13 @@ $(document).ready(function() {
         $(this).addClass('shipSet');
         $(this).next().addClass('shipSet');
         $(this).next().next().addClass('shipSet');
+
         battleships[3].setDown = true;
+        battleships[3].coordinates.push(this.id, $(this).next().attr('id'), $(this).next().next().attr('id'));
+
         displayMessage("Please place your Ships: ", true);
-        listening();
         $('.tile').off();
+        listening();
 
       });
     }
@@ -303,10 +335,13 @@ $(document).ready(function() {
         $(this).addClass('shipSet');
         $(setVerticalId(this, 1)).addClass('shipSet');
         $(setVerticalId(this, 2)).addClass('shipSet');
+
         battleships[3].setDown = true;
+        battleships[3].coordinates.push(this.id, $(setVerticalId(this, 1)).attr('id'), $(setVerticalId(this, 2)).attr('id'));
+
         displayMessage("Please place your Ships: ", true);
-        listening();
         $('.tile').off();
+        listening();
 
       });
     }
@@ -327,10 +362,13 @@ $(document).ready(function() {
       }).on('click', function(){
         $(this).addClass('shipSet');
         $(this).next().addClass('shipSet');
+
         battleships[4].setDown = true;
+        battleships[4].coordinates.push(this.id, $(this).next().attr('id'));
+
         displayMessage("Please place your Ships: ", true);
-        listening();
         $('.tile').off();
+        listening();
 
       });
     }
@@ -346,18 +384,75 @@ $(document).ready(function() {
       }).click(function(){
         $(this).addClass('shipSet');
         $(setVerticalId(this, 1)).addClass('shipSet');
+
         battleships[4].setDown = true;
+        battleships[4].coordinates.push(this.id, $(setVerticalId(this, 1)).attr('id'));
+
         displayMessage("Please place your Ships: ", true);
-        listening();
         $('.tile').off();
+        listening();
 
       });
     }
   }
 
+  function isTouched(tileId){
+    for(let i = 0; i < battleships.length; i++){
+      for(let j = 0; j < battleships[i].coordinates.length; j++){
+        if(tileId === battleships[i].coordinates[j]){
+          let currentTile = "#"+tileId+".tile";
+          $(currentTile).removeClass('shipSet').removeClass('hover').addClass('touched');
+
+          battleships[i].coordinates.splice(j, 1);
+          console.log(battleships[i].coordinates.length);
+          if(battleships[i].coordinates.length === 0){
+            battleships[i].alive = false;
+          }
+
+          return;
+        }
+      }
+    }
+
+  }
+
+  function playTime(){
+    displayMessage("Click ships to try the game!! I know they are your own ships. Sorry.");
+
+    $('.tile').on('click', function(){
+      isTouched(this.id);
+      if(battleships[0].alive === false &&
+        battleships[1].alive === false &&
+        battleships[2].alive === false &&
+        battleships[3].alive === false &&
+        battleships[4].alive === false){
+        console.log('You win')
+        displayMessage("YOU WIN !!!!!!!!!");
+        return;
+     }
+    });
+  }
+
 
   // Need this function to create a dynamic ship set down, called everytime we need to listen to a new button click
   function listening(){
+
+    if(battleships[0].setDown === true &&
+      battleships[1].setDown === true &&
+      battleships[2].setDown === true &&
+      battleships[3].setDown === true &&
+      battleships[4].setDown === true){
+
+      console.log("Setup finished, ready to play !!!");
+      playTime();
+      // $('.tile').on('click', function(){
+      //   console.log("I click on a tile.");
+      //   console.log(this.id);
+      // });
+
+    }
+
+
 
     $('#carrier').click(function(){
       $('.messageBox').empty();
@@ -433,7 +528,6 @@ $(document).ready(function() {
         setDestroyer('vertical');
       });
     });
-
   }
 
   // When clicked, the startGame button will walk the player into placing each of his ships.
@@ -474,13 +568,6 @@ $(document).ready(function() {
 // Start game set 5 fives button, one for each ship
 // clicking one promtp the vertical or horizontal
 // setting it up gets back to the button selection with the ship button less
-
-
-
-
-
-
-
 
 
   // then display a message to start playing
