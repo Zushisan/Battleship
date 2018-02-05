@@ -1,23 +1,80 @@
+#welcome{
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+}
+
 .playerOne {
  /* Player one is the container for player one*/
 
  background-color: lightgrey;
  width: 750px;
+ padding: 5px;
+ border: 5px;
+ border: 1px solid black;
+ float: left;
+
+
 }
 
+.playerTwo {
+ /* Player two is the container for player two*/
 
-.board {
+ background-color: lightgrey;
+ width: 750px;
+ padding: 5px;
+ border: 5px;
+ border: 1px solid black;
+ float: right;
 
-    width: 500px;
-    height: 500px;
 }
 
-.row {
+h2 {
+  text-align: center;
+}
 
-    width: 500px;
-    height: 50px;
-    margin-bottom: -3px;
-    float: left;
+#container{
+
+}
+
+.visible{
+  visibility: visible;
+}
+
+.hidden{
+  visibility: hidden;
+}
+
+.playerOne .board {
+
+    width: 550px;
+    height: 550px;
+    padding: 5px;
+    border: 5px;
+    margin: 5px auto auto 100px;
+    /*float: right;*/
+    /*visibility: hidden;*/
+}
+
+.playerTwo .board {
+
+    width: 550px;
+    height: 550px;
+    padding: 5px;
+    border: 5px;
+    margin: 5px 100px auto auto;
+    /*float: right;*/
+    /*visibility: hidden;*/
+}
+
+.letter{
+  font-size: 200%;
+  text-align: center;
+}
+
+.number{
+  font-size: 200%;
+  text-align: center;
 }
 
 .tile {
@@ -32,19 +89,10 @@
 .touched {
   background-color: red;
 }
-/*.rowDisplay {
 
-    width: 500px;
-    height: 50px;
-    float: left;
+.missed {
+  background-color: yellow;
 }
-
-.columnDisplay {
-
-    width: 49px;
-    height: 500px;
-    float: left;
-}*/
 
 .hover {
   background-color: blue;
@@ -55,8 +103,11 @@
 }
 
 .messageBox {
-  float: right;
-  width: 230px;
-  height: 300px;
-  background-color: grey;
+  float: left;
+  width: 710px;
+  height: 250px;
+  background-color: #ccc;
+  border: 1px solid black;
+  text-align: center;
+  padding: 25px;
 }

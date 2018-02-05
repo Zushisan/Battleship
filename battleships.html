@@ -7,32 +7,277 @@
 
   </head>
   <body>
+    <div id="welcome">
+      <h1> Welcome to Battleships </h1>
+      <h3> Choose number of Players </h3>
+      <button type="button" id="onePlayerGame"> One Player </button>
+      <button type="button" id="twoPlayersGame"> Two Players </button>
+    </div>
 
-    <div class="playerOne">
+    <div id="container" class="hidden">
+
+      <div class="playerOne">
+        <h2> Player One </h2>
+        <div class="board playerOne">
+          <div class="tile"></div>
+          <div class="tile letter">A</div>
+          <div class="tile letter">B</div>
+          <div class="tile letter">C</div>
+          <div class="tile letter">D</div>
+          <div class="tile letter">E</div>
+          <div class="tile letter">F</div>
+          <div class="tile letter">G</div>
+          <div class="tile letter">H</div>
+          <div class="tile letter">I</div>
+          <div class="tile letter">J</div>
+          <div class="tile number">1</div>
+          <div class="tile" id="p1A1"></div>
+          <div class="tile" id="p1B1"></div>
+          <div class="tile" id="p1C1"></div>
+          <div class="tile" id="p1D1"></div>
+          <div class="tile" id="p1E1"></div>
+          <div class="tile" id="p1F1"></div>
+          <div class="tile" id="p1G1"></div>
+          <div class="tile" id="p1H1"></div>
+          <div class="tile" id="p1I1"></div>
+          <div class="tile" id="p1J1"></div>
+          <div class="tile number">2</div>
+          <div class="tile" id="p1A2"></div>
+          <div class="tile" id="p1B2"></div>
+          <div class="tile" id="p1C2"></div>
+          <div class="tile" id="p1D2"></div>
+          <div class="tile" id="p1E2"></div>
+          <div class="tile" id="p1F2"></div>
+          <div class="tile" id="p1G2"></div>
+          <div class="tile" id="p1H2"></div>
+          <div class="tile" id="p1I2"></div>
+          <div class="tile" id="p1J2"></div>
+          <div class="tile number">3</div>
+          <div class="tile" id="p1A3"></div>
+          <div class="tile" id="p1B3"></div>
+          <div class="tile" id="p1C3"></div>
+          <div class="tile" id="p1D3"></div>
+          <div class="tile" id="p1E3"></div>
+          <div class="tile" id="p1F3"></div>
+          <div class="tile" id="p1G3"></div>
+          <div class="tile" id="p1H3"></div>
+          <div class="tile" id="p1I3"></div>
+          <div class="tile" id="p1J3"></div>
+          <div class="tile number">4</div>
+          <div class="tile" id="p1A4"></div>
+          <div class="tile" id="p1B4"></div>
+          <div class="tile" id="p1C4"></div>
+          <div class="tile" id="p1D4"></div>
+          <div class="tile" id="p1E4"></div>
+          <div class="tile" id="p1F4"></div>
+          <div class="tile" id="p1G4"></div>
+          <div class="tile" id="p1H4"></div>
+          <div class="tile" id="p1I4"></div>
+          <div class="tile" id="p1J4"></div>
+          <div class="tile number">5</div>
+           <div class="tile" id="p1A5"></div>
+          <div class="tile" id="p1B5"></div>
+          <div class="tile" id="p1C5"></div>
+          <div class="tile" id="p1D5"></div>
+          <div class="tile" id="p1E5"></div>
+          <div class="tile" id="p1F5"></div>
+          <div class="tile" id="p1G5"></div>
+          <div class="tile" id="p1H5"></div>
+          <div class="tile" id="p1I5"></div>
+          <div class="tile" id="p1J5"></div>
+          <div class="tile number">6</div>
+          <div class="tile" id="p1A6"></div>
+          <div class="tile" id="p1B6"></div>
+          <div class="tile" id="p1C6"></div>
+          <div class="tile" id="p1D6"></div>
+          <div class="tile" id="p1E6"></div>
+          <div class="tile" id="p1F6"></div>
+          <div class="tile" id="p1G6"></div>
+          <div class="tile" id="p1H6"></div>
+          <div class="tile" id="p1I6"></div>
+          <div class="tile" id="p1J6"></div>
+          <div class="tile number">7</div>
+          <div class="tile" id="p1A7"></div>
+          <div class="tile" id="p1B7"></div>
+          <div class="tile" id="p1C7"></div>
+          <div class="tile" id="p1D7"></div>
+          <div class="tile" id="p1E7"></div>
+          <div class="tile" id="p1F7"></div>
+          <div class="tile" id="p1G7"></div>
+          <div class="tile" id="p1H7"></div>
+          <div class="tile" id="p1I7"></div>
+          <div class="tile" id="p1J7"></div>
+          <div class="tile number">8</div>
+          <div class="tile" id="p1A8"></div>
+          <div class="tile" id="p1B8"></div>
+          <div class="tile" id="p1C8"></div>
+          <div class="tile" id="p1D8"></div>
+          <div class="tile" id="p1E8"></div>
+          <div class="tile" id="p1F8"></div>
+          <div class="tile" id="p1G8"></div>
+          <div class="tile" id="p1H8"></div>
+          <div class="tile" id="p1I8"></div>
+          <div class="tile" id="p1J8"></div>
+          <div class="tile number">9</div>
+          <div class="tile" id="p1A9"></div>
+          <div class="tile" id="p1B9"></div>
+          <div class="tile" id="p1C9"></div>
+          <div class="tile" id="p1D9"></div>
+          <div class="tile" id="p1E9"></div>
+          <div class="tile" id="p1F9"></div>
+          <div class="tile" id="p1G9"></div>
+          <div class="tile" id="p1H9"></div>
+          <div class="tile" id="p1I9"></div>
+          <div class="tile" id="p1J9"></div>
+          <div class="tile number">10</div>
+          <div class="tile" id="p1A10"></div>
+          <div class="tile" id="p1B10"></div>
+          <div class="tile" id="p1C10"></div>
+          <div class="tile" id="p1D10"></div>
+          <div class="tile" id="p1E10"></div>
+          <div class="tile" id="p1F10"></div>
+          <div class="tile" id="p1G10"></div>
+          <div class="tile" id="p1H10"></div>
+          <div class="tile" id="p1I10"></div>
+          <div class="tile" id="p1J10"></div>
+        </div>
+      </div>
+
+      <div class="playerTwo">
+        <h2> Player Two / AI </h2>
+        <div class="board playerTwo">
+          <div class="tile"></div>
+          <div class="tile letter">A</div>
+          <div class="tile letter">B</div>
+          <div class="tile letter">C</div>
+          <div class="tile letter">D</div>
+          <div class="tile letter">E</div>
+          <div class="tile letter">F</div>
+          <div class="tile letter">G</div>
+          <div class="tile letter">H</div>
+          <div class="tile letter">I</div>
+          <div class="tile letter">J</div>
+          <div class="tile number">1</div>
+          <div class="tile" id="p2A1"></div>
+          <div class="tile" id="p2B1"></div>
+          <div class="tile" id="p2C1"></div>
+          <div class="tile" id="p2D1"></div>
+          <div class="tile" id="p2E1"></div>
+          <div class="tile" id="p2F1"></div>
+          <div class="tile" id="p2G1"></div>
+          <div class="tile" id="p2H1"></div>
+          <div class="tile" id="p2I1"></div>
+          <div class="tile" id="p2J1"></div>
+          <div class="tile number">2</div>
+          <div class="tile" id="p2A2"></div>
+          <div class="tile" id="p2B2"></div>
+          <div class="tile" id="p2C2"></div>
+          <div class="tile" id="p2D2"></div>
+          <div class="tile" id="p2E2"></div>
+          <div class="tile" id="p2F2"></div>
+          <div class="tile" id="p2G2"></div>
+          <div class="tile" id="p2H2"></div>
+          <div class="tile" id="p2I2"></div>
+          <div class="tile" id="p2J2"></div>
+          <div class="tile number">3</div>
+          <div class="tile" id="p2A3"></div>
+          <div class="tile" id="p2B3"></div>
+          <div class="tile" id="p2C3"></div>
+          <div class="tile" id="p2D3"></div>
+          <div class="tile" id="p2E3"></div>
+          <div class="tile" id="p2F3"></div>
+          <div class="tile" id="p2G3"></div>
+          <div class="tile" id="p2H3"></div>
+          <div class="tile" id="p2I3"></div>
+          <div class="tile" id="p2J3"></div>
+          <div class="tile number">4</div>
+          <div class="tile" id="p2A4"></div>
+          <div class="tile" id="p2B4"></div>
+          <div class="tile" id="p2C4"></div>
+          <div class="tile" id="p2D4"></div>
+          <div class="tile" id="p2E4"></div>
+          <div class="tile" id="p2F4"></div>
+          <div class="tile" id="p2G4"></div>
+          <div class="tile" id="p2H4"></div>
+          <div class="tile" id="p2I4"></div>
+          <div class="tile" id="p2J4"></div>
+          <div class="tile number">5</div>
+           <div class="tile" id="p2A5"></div>
+          <div class="tile" id="p2B5"></div>
+          <div class="tile" id="p2C5"></div>
+          <div class="tile" id="p2D5"></div>
+          <div class="tile" id="p2E5"></div>
+          <div class="tile" id="p2F5"></div>
+          <div class="tile" id="p2G5"></div>
+          <div class="tile" id="p2H5"></div>
+          <div class="tile" id="p2I5"></div>
+          <div class="tile" id="p2J5"></div>
+          <div class="tile number">6</div>
+          <div class="tile" id="p2A6"></div>
+          <div class="tile" id="p2B6"></div>
+          <div class="tile" id="p2C6"></div>
+          <div class="tile" id="p2D6"></div>
+          <div class="tile" id="p2E6"></div>
+          <div class="tile" id="p2F6"></div>
+          <div class="tile" id="p2G6"></div>
+          <div class="tile" id="p2H6"></div>
+          <div class="tile" id="p2I6"></div>
+          <div class="tile" id="p2J6"></div>
+          <div class="tile number">7</div>
+          <div class="tile" id="p2A7"></div>
+          <div class="tile" id="p2B7"></div>
+          <div class="tile" id="p2C7"></div>
+          <div class="tile" id="p2D7"></div>
+          <div class="tile" id="p2E7"></div>
+          <div class="tile" id="p2F7"></div>
+          <div class="tile" id="p2G7"></div>
+          <div class="tile" id="p2H7"></div>
+          <div class="tile" id="p2I7"></div>
+          <div class="tile" id="p2J7"></div>
+          <div class="tile number">8</div>
+          <div class="tile" id="p2A8"></div>
+          <div class="tile" id="p2B8"></div>
+          <div class="tile" id="p2C8"></div>
+          <div class="tile" id="p2D8"></div>
+          <div class="tile" id="p2E8"></div>
+          <div class="tile" id="p2F8"></div>
+          <div class="tile" id="p2G8"></div>
+          <div class="tile" id="p2H8"></div>
+          <div class="tile" id="p2I8"></div>
+          <div class="tile" id="p2J8"></div>
+          <div class="tile number">9</div>
+          <div class="tile" id="p2A9"></div>
+          <div class="tile" id="p2B9"></div>
+          <div class="tile" id="p2C9"></div>
+          <div class="tile" id="p2D9"></div>
+          <div class="tile" id="p2E9"></div>
+          <div class="tile" id="p2F9"></div>
+          <div class="tile" id="p2G9"></div>
+          <div class="tile" id="p2H9"></div>
+          <div class="tile" id="p2I9"></div>
+          <div class="tile" id="p2J9"></div>
+          <div class="tile number">10</div>
+          <div class="tile" id="p2A10"></div>
+          <div class="tile" id="p2B10"></div>
+          <div class="tile" id="p2C10"></div>
+          <div class="tile" id="p2D10"></div>
+          <div class="tile" id="p2E10"></div>
+          <div class="tile" id="p2F10"></div>
+          <div class="tile" id="p2G10"></div>
+          <div class="tile" id="p2H10"></div>
+          <div class="tile" id="p2I10"></div>
+          <div class="tile" id="p2J10"></div>
+
+        </div>
+      </div>
+
       <div class="messageBox">
-        <p> Welcome to Battleships !!!</p>
-        <button type="button" id="startGame">Start the Game !</button>
+          <button type="button" id="startGame">Start the Game !</button>
       </div>
-      <div class="rowDisplay">ABCDEFGHJ</div>
-      <div class="columnDisplay">12345678910</div>
-      <div class="board""></div>
-
-
-<!--       <div class="destroyerClass">
-        <button type="button" id="destroyer">I am the Destroyer 2 tiles</button>
-      </div>
-      <div class="carrierClass">
-        <button type="button" id="carrier">I am the Carrier 5 tiles</button>
-      </div>
-      <div class="carrierClass">
-        <button type="button" id="carrierVertical">I am the Carrier vertical 5 tiles</button>
-      </div>
- -->
-
 
     </div>
+
   <script src="jquery.js"></script>
   <script src="battleships.js"></script>
-  <script>document.write('<script src="http://' + (location.host || '${1:localhost}').split(':')[0] + ':${2:35729}/livereload.js?snipver=1"></' + 'script>')</script>
   </body>
 </html>
